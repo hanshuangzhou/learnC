@@ -1,0 +1,11 @@
+syntax = "proto2";
+package date.door;
+
+enum EventType {
+    RingOn = 0;
+    SayBye = 1;
+};
+
+message Event {
+    required EventType eventType = 1;
+}

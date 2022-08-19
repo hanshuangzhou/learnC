@@ -1,0 +1,2 @@
+#TODO create cmake to compile and link program.
+#Now compile and link program by build.sh

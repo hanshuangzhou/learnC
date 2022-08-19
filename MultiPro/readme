@@ -1,0 +1,24 @@
+技术：   进程间通信--消息队列 
+        Proto协议
+        回调函数
+        日志库
+        状态机
+        Cmake make
+
+应用场景：进程A敲门（进程B看作门）,进程B根据自己的状态确定开门还是关门
+
+details:
+
+        门的状态： 初始状态     开门状态    关门状态
+        引起状态
+        转换的事件         按门铃       说再见
+
+                    初始状态------->开门状态------->关门状态
+                            按门铃        说再见
+
+Proto协议 定义的消息 EventType
+
+日志库  easylogging 来自https://github.com/amrayn/easyloggingpp/tags
+        有网友发现疑似bug的地方： https://blog.csdn.net/w1820020635/article/details/124892550
+
+优先级 状态机、日志库在第二阶段搞

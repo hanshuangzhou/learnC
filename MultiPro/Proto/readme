@@ -1,0 +1,33 @@
+# Protocol Buffers - Code Example
+
+This directory contains example code that uses Protocol Buffers to manage an
+address book. Two programs are provided for each supported language. The
+add_person example adds a new person to an address book, prompting the user to
+input the person's information. The list_people example lists people already in
+the address book. The examples use the exact same format in all three languages,
+so you can, for example, use add_person_java to create an address book and then
+use list_people_python to read it.
+
+These examples are part of the Protocol Buffers tutorial, located at:
+  https://developers.google.com/protocol-buffers/docs/tutorials
+
+# On Ubuntu16.04 protoc2.6.1 is installed by sudo apt-get isntall xxx.
+
+# Compile Proto
+  通过定义好的.proto文件来生成Java、Python、C++代码，需要基于.proto文件运行protocol buffer编译器protoc
+  编译命令如下：
+    protoc  --proto_path=PATH 
+	          --cpp_out=DST_DIR 
+	          --java_out=DST_DIR 
+	          --python_out=DST_DIR // 3选1
+	          path/xxx.proto
+
+            1、proto_path声明了.proto文件所在目录。如果忽略该值，则使用当前目录。如果有多个目录则可以对–proto_path写多次，它们将会顺序的被访问并执行导入。
+            2、DST_DIR声明了cpp_out、java_out、python_out 等对应生成的代码文件路径
+            3、最后的路径是proto文件的具体路径，还可以用*.proto编译对应路径下的所有proto文件
+
+            ps：将 --proto_path指定为绝对路径时,proto文件不能指定为相对路径。可以删除–proto_path参数(无论如何都默认为当前目 录)或者都使用绝对路径
+# Ubuntu16.04系统自带的protobuf版本为 2.6.1 
+  通过 locate 可以看到 /usr/lib/x86_64-linux-gnu/ 路径下面 会有 libprotobuf-lite.so.9 libprotobuf-lite.so.9.0.1
+  libprotobuf.so.9  libprotobuf.so.9.0.1等so文件，其中 libprotobuf-lite.so.9 和 libprotobuf.so.9 是文件链接。
+
