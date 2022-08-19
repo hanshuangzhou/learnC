@@ -6,7 +6,7 @@
  *          0.2 use API mq_open mq_send to establish MQ and send msg.The msg is in char array.
  *              if the size of msg not handled is more than mq_maxmsg, exit send peocess.
  *                  The func is set by O_NONBLOCK.
- *              TODO use msg by protobuf.
+ *          0.3 transfer proto msg between process.
  */
 
 #include <iostream>
@@ -17,10 +17,16 @@
 #include <time.h>
 #include <unistd.h>
 #include "../def.h"
+#include <google/protobuf/message.h> //contain 序列化/反序列化 API
+#include "../Proto/event.pb.h"
+
 using namespace std;
 
 int main() {
-    char mq_buffer[6] = "Hello";
+    date::door::Event evt;
+    evt.set_eventtype(date::door::SayBye);
+    string msg;
+    evt.SerializeToString(&msg);
 
     struct mq_attr attr;
     attr.mq_flags = 0;
@@ -40,10 +46,9 @@ int main() {
     int sendOK = -1;
     while (1)
     {
-        sendOK = mq_send(mq_date, mq_buffer, sizeof(mq_buffer), 0);
-        printf("mq_send return value = %d\n", sendOK);
+        sendOK = mq_send(mq_date, msg.c_str(), sizeof(msg.length()), 0);
         if (sendOK == 0) {
-            printf("send msg --%s-- success\n", mq_buffer);
+            printf("send msg success\n");
         } else {
             if (errno == EAGAIN) {
                 printf("msg queue is full \n");
