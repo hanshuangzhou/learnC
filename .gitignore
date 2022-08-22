@@ -1,4 +1,5 @@
-MultiPro/.vscode/
+.vscode/
+*/.vscode/
 a.out
 *.log
 send
