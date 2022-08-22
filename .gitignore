@@ -1,2 +1,5 @@
 MultiPro/.vscode/
 a.out
+*.log
+send
+receive
