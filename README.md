@@ -1,2 +1,2 @@
-# learnC
+# learnCPlusPlus
 learn c++ deeper
